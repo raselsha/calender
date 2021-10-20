@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<title>jQuery iCalendar</title>
+<style type="text/css">
+@import "css/jquery.icalendar.css";
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.icalendar.js"></script>
+<script type="text/javascript">
+$(function () {
+   var AustDayLunch = {start: new Date(2008, 1-1, 26, 11, 30, 00),
+      end: new Date(2008, 1-1, 26, 12, 45, 00),
+      title: 'Australia Day lunch',
+      description: 'A traditional barbeque for our big day',
+      location: 'On your local beach'};
+   $('#basicICal').icalendar($.extend({icons: 'img/icalendar.png'}, AustDayLunch));
+});
+</script>
+</head>
+<body>
+<h1>Calendar </h1>
+
+<div id="basicICal"></div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-4715900-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+</body>
+</html>
