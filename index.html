@@ -65,9 +65,9 @@
                    "BEGIN:VEVENT\n" +
                    "DTSTART:" + makeDate(event.start) + "\n" +
                    "DTEND;VALUE=DATE:" +  makeDate(event.end) + "\n" +
-                   "SUMMARY:" +  encodeURI(event.title)+ "\n" +
-                   "LOCATION:" + encodeURI(event.location) + "\n" + 
-                   "DESCRIPTION:" + encodeURI(event.description) + "\n" +
+                   "SUMMARY:" +  event.title + "\n" +
+                   "LOCATION:" + event.location + "\n" + 
+                   "DESCRIPTION:" + event.description + "\n" +
                    "END:VEVENT\n" +
                    "END:VCALENDAR";
             // var blob = new Blob([ical], {type:'text/calendar'});
