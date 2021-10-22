@@ -1,35 +1,106 @@
-<!DOCTYPE html5>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<title>jQuery iCalendar</title>
-
-<link rel="stylesheet" type="text/css" href="css/jquery.icalendar.css">
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.icalendar.js"></script>
-<script type="text/javascript">
-$(function () {
-   var AustDayLunch = {start: new Date(2008, 1-1, 26, 11, 30, 00),
-      end: new Date(2008, 1-1, 26, 12, 45, 00),
-      title: 'Australia Day lunch',
-      description: 'A traditional barbeque for our big day',
-      location: 'On your local beach'};
-   $('#basicICal').icalendar($.extend({icons: 'img/icalendar.png'}, AustDayLunch));
-});
-</script>
+   <meta charset="utf-8">
+   <title>Add to calender</title>
+   <style type="text/css">
+      .addCal{}
+      .calIcon{
+         text-decoration: none;
+         display: inline-block;
+         padding:0px;
+         margin: 5px;
+         background:
+         line-height: 0;
+         width: 25px;
+         height: 25px;
+         background-color:transparent; /*#333;*/
+         background-image: url(img/icalendar.png);
+         background-repeat: no-repeat;
+         background-position:0px 0px;
+      }
+   </style>
 </head>
 <body>
-<h1>Calendar </h1>
+   <h1>Calendar</h1>
+   <div class="addCal"></div>
+   <script>
+        var iconCount = 4;
+        var iconSize = 25;
+        var sites = ['google','apple','outlook','yahoo'];
 
-<div id="basicICal"></div>
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-var pageTracker = _gat._getTracker("UA-4715900-1");
-pageTracker._initData();
-pageTracker._trackPageview();
-</script>
+        function addToCalenderLink(selector,eventData){
+        
+        var elm = document.querySelectorAll(selector);
+        for (var i = 0; i < elm.length; i++) {
+          for (var j = 0; j < iconCount; j++) {
+            var node = document.createElement("a");
+            node.innerHTML = '';
+            node.classList.add('calIcon');
+            node.href = getLink(eventData,sites[j]);
+            if(j==1){
+               node.download = 'event.ics';
+               // node.onclick = "download("+eventData+","+sites[j]+")";
+            }
+            
+            node.style.backgroundPosition = '-'+ iconSize*j+'px';
+            elm[i].appendChild(node);
+          }
+        }
+      }
+
+      function makeDate(data) {
+         return data.toISOString().replace(/\W/g, '');
+      }
+
+     
+      function getLink(event,site){
+        var link ='';
+        switch(site){
+         case sites[0]:
+            link = 'https://calendar.google.com/calendar/render?action=TEMPLATE&dates='+makeDate(event.start)+'/'+makeDate(event.end)+'&details='+event.description+'&location='+event.location+'&text='+event.title;
+         break;
+         case sites[1]:
+            ical = "BEGIN:VCALENDAR\n" +
+                   "BEGIN:VEVENT\n" +
+                   "DTSTART:" + makeDate(event.start) + "\n" +
+                   "DTEND;VALUE=DATE:" +  makeDate(event.end) + "\n" +
+                   "SUMMARY:" +  event.title + "\n" +
+                   "LOCATION:" + event.location + "\n" + 
+                   "DESCRIPTION:" + event.description + "\n" +
+                   "END:VEVENT\n" +
+                   "END:VCALENDAR";
+            // var blob = new Blob([ical], {type:'text/calendar'});
+            link =  'data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20211022T101500Z%0ADTEND:20211022T104500Z%0AEND:VEVENT%0AEND:VCALENDAR%0A';
+
+         break;
+         case sites[2]:
+            link = 'https://outlook.live.com/calendar/0/deeplink/compose?body='+event.description+'&enddt='+event.end.toISOString()+'&location='+event.location+'&rru=addevent&startdt='+event.start.toISOString()+'&subject='+event.title;
+         break;
+         case sites[3]:
+            link = 'https://calendar.yahoo.com/?et='+makeDate(event.end)+'&st='+makeDate(event.start)+'&v=60';
+         break;
+         default:
+            link = '#';
+         break;
+        }
+        console.log(link);
+        return link;
+      }
+
+   var eventData = {
+       start: new Date("Dec 1, 2021 01:00:00"),
+       end: new Date("jan 31, 2022 12:00:00"),
+       title: 'The Dhaka event',
+       summary: 'summary',
+       description: 'A traditional big day',
+       location: 'Dhaka',
+   };
+   addToCalenderLink('.addCal',eventData);
+
+   </script>
 </body>
 </html>
+
+
+      
