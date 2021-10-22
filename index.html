@@ -73,6 +73,9 @@
             // var blob = new Blob([ical], {type:'text/calendar'});
             link =  'data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:'+ makeDate(event.start) +
             '%0ADTEND:'+ makeDate(event.end) +
+            '%0ASUMMARY:'+encodeURI(event.title) + 
+            '%0ALOCATION:'+encodeURI(event.location)+ 
+            '%0ADESCRIPTION:'+encodeURI(event.description)+
             '%0AEND:VEVENT%0AEND:VCALENDAR%0A';
 
          break;
