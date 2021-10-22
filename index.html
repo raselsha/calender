@@ -71,7 +71,7 @@
                    "END:VEVENT\n" +
                    "END:VCALENDAR";
             // var blob = new Blob([ical], {type:'text/calendar'});
-            link =  'data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20210908T114500Z%0ADTEND:20210908T121500Z%0AEND:VEVENT%0AEND:VCALENDAR%0A';
+            link =  'data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:'+ makeDate(event.start) +'%0ADTEND:'+ makeDate(event.end) +'%0AEND:VEVENT%0AEND:VCALENDAR%0A';
 
          break;
          case sites[2]:
