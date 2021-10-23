@@ -54,8 +54,14 @@
       }
 
       function appleDate(data) {
-         d = data;
-         return d.getFullYear().toString()+d.getMonth().toString()+d.getDate().toString()+"T"+d.getHours().toString()+d.getMinutes().toString()+d.getSeconds().toString()+"Z";
+        
+         y = data.getFullYear();
+         m = data.getMonth()+1;
+         d = data.getDate();
+         h = data.getHours();
+         m = data.getMinutes();
+         s = data.getSeconds();
+         return String(y)+String(m)+String(d)+"T"+String(h)+String(m)+String(s)+"z";;
       }
      
       function getLink(event,site){
