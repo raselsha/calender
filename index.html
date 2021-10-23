@@ -53,6 +53,10 @@
          return data.toISOString().replace(/\W/g, '');
       }
 
+      function appleDate(data) {
+         d = data;
+         return d.getFullYear().toString()+d.getMonth().toString()+d.getDate().toString()+"T"+d.getHours().toString()+d.getMinutes().toString()+d.getSeconds().toString()+"Z";
+      }
      
       function getLink(event,site){
         var link ='';
@@ -63,8 +67,8 @@
          case sites[1]:
             ical = "BEGIN:VCALENDAR\n" +
                    "BEGIN:VEVENT\n" +
-                   "DTSTART:20211023T181500Z\n" +
-                   "DTEND;VALUE=DATE:20211023T181500Z\n" +
+                   "DTSTART:"+appleDate(event.start)+"\n" +
+                   "DTEND;VALUE=DATE:"+appleDate(event.end)+"\n" +
                    "SUMMARY:" +  event.title + "\n" +
                    "LOCATION:" + event.location + "\n" + 
                    "DESCRIPTION:" + event.description + "\n" +
