@@ -63,13 +63,22 @@
          case sites[1]:
             ical = "BEGIN:VCALENDAR\n" +
                    "BEGIN:VEVENT\n" +
-                   "DTSTART:" + event.start + "\n" +
-                   "DTEND;VALUE=DATE:" +event.end+ "\n" +
+                   "DTSTART:20211023T181500Z\n" +
+                   "DTEND;VALUE=DATE:20211023T181500Z\n" +
                    "SUMMARY:" +  event.title + "\n" +
                    "LOCATION:" + event.location + "\n" + 
                    "DESCRIPTION:" + event.description + "\n" +
                    "END:VEVENT\n" +
                    "END:VCALENDAR";
+                   // ical = "BEGIN:VCALENDAR\n" +
+                   // "BEGIN:VEVENT\n" +
+                   // "DTSTART:" + event.start + "\n" +
+                   // "DTEND;VALUE=DATE:" +event.end+ "\n" +
+                   // "SUMMARY:" +  event.title + "\n" +
+                   // "LOCATION:" + event.location + "\n" + 
+                   // "DESCRIPTION:" + event.description + "\n" +
+                   // "END:VEVENT\n" +
+                   // "END:VCALENDAR";
             
             link =  'data:text/calendar;charset=utf8,'+encodeURI(ical);
 
