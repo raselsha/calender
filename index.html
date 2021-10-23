@@ -63,15 +63,15 @@
          case sites[1]:
             ical = "BEGIN:VCALENDAR\n" +
                    "BEGIN:VEVENT\n" +
-                   "DTSTART:" + makeDate(event.start) + "\n" +
-                   "DTEND;VALUE=DATE:" +  makeDate(event.end) + "\n" +
+                   "DTSTART:" + event.start + "\n" +
+                   "DTEND;VALUE=DATE:" +event.end+ "\n" +
                    "SUMMARY:" +  event.title + "\n" +
                    "LOCATION:" + event.location + "\n" + 
                    "DESCRIPTION:" + event.description + "\n" +
                    "END:VEVENT\n" +
                    "END:VCALENDAR";
-            // var blob = new Blob([ical], {type:'text/calendar'});
-            link =  'data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:'+ makeDate(event.start) +'%0ADTEND:'+ makeDate(event.end) +'%0AEND:VEVENT%0AEND:VCALENDAR%0A';
+            
+            link =  'data:text/calendar;charset=utf8,'+encodeURI(ical);
 
          break;
          case sites[2]:
